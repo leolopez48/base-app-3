@@ -3,118 +3,102 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
-
-use Illuminate\Http\Request;
 use Encrypt;
+use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
-        $itemsPerPage = $request->itemsPerPage ?? 10;
-        $skip = ($request->page - 1) * $request->itemsPerPage;
+        [$page, $itemsPerPage, $skip] = $this->pagination($request);
+        [$sortBy, $sort] = $this->sorting($request);
+        $search = '%' . $request->input('search', '') . '%';
 
-        // Getting all the records
-        if (($request->itemsPerPage == -1)) {
-            $itemsPerPage =  Department::count();
+        if ($itemsPerPage === -1) {
+            $itemsPerPage = Department::count();
             $skip = 0;
         }
 
-        $sortBy = (isset($request->sortBy[0])) ? $request->sortBy[0] : 'id';
-        $sort = (isset($request->sortDesc[0])) ? "asc" : 'desc';
-
-        $search = (isset($request->search)) ? "%$request->search%" : '%%';
-
-        $department = Department::allDataSearched($search, $sortBy, $sort, $skip, $itemsPerPage);
-        $department = Encrypt::encryptObject($department, "id");
-
-        $total = Department::counterPagination($search);
+        $departments = Department::allDataSearched(
+            $search,
+            $sortBy,
+            $sort,
+            $skip,
+            $itemsPerPage
+        );
 
         return response()->json([
-            "message"=>"Registros obtenidos correctamente.",
-            "data" => $department,
-            "total" => $total,
+            'message' => 'Registros obtenidos correctamente.',
+            'data' => Encrypt::encryptObject($departments, 'id'),
+            'total' => Department::counterPagination($search),
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $department = new Department;
-
-		$department->department_name = $request->department_name;
-		$department->min_dpto = $request->min_dpto;
-		$department->may_dpto = $request->may_dpto;
-		$department->cod_dpto = $request->cod_dpto;
-		$department->deleted_at = $request->deleted_at;
-
-        $department->save();
+        Department::create($this->validatedData($request));
 
         return response()->json([
-            "message"=>"Registro creado correctamente.",
+            'message' => 'Registro creado correctamente.',
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Department  department
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Department $department)
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Department  $department
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
-    {
-        $data = Encrypt::decryptArray($request->all(), 'id');
-
-        $department = Department::where('id', $data['id'])->first();
-		$department->department_name = $request->department_name;
-		$department->min_dpto = $request->min_dpto;
-		$department->may_dpto = $request->may_dpto;
-		$department->cod_dpto = $request->cod_dpto;
-		$department->deleted_at = $request->deleted_at;
-
-        $department->save();
+        $department = Department::findOrFail(Encrypt::decryptValue($id));
 
         return response()->json([
-            "message"=>"Registro modificado correctamente.",
+            'message' => 'Registro obtenido correctamente.',
+            'data' => Encrypt::encryptValueObject($department, 'id'),
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Department  $department
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request)
+    public function update(Request $request, $id)
     {
-        $id = Encrypt::decryptValue($request->id);
-
-        Department::where('id', $id)->delete();
+        $department = Department::findOrFail(Encrypt::decryptValue($id));
+        $department->update($this->validatedData($request));
 
         return response()->json([
-            "message"=>"Registro eliminado correctamente.",
+            'message' => 'Registro modificado correctamente.',
         ]);
+    }
+
+    public function destroy($id)
+    {
+        Department::findOrFail(Encrypt::decryptValue($id))->delete();
+
+        return response()->json([
+            'message' => 'Registro eliminado correctamente.',
+        ]);
+    }
+
+    private function validatedData(Request $request): array
+    {
+        return $request->validate([
+            'department_name' => ['required', 'string', 'max:255'],
+            'min_dpto' => ['required', 'string', 'max:255'],
+            'may_dpto' => ['required', 'string', 'max:255'],
+            'cod_dpto' => ['required', 'string', 'max:255'],
+        ]);
+    }
+
+    private function pagination(Request $request): array
+    {
+        $page = max((int) $request->input('page', 1), 1);
+        $itemsPerPage = (int) $request->input('itemsPerPage', 10);
+
+        return [$page, $itemsPerPage, ($page - 1) * max($itemsPerPage, 0)];
+    }
+
+    private function sorting(Request $request): array
+    {
+        $sortItem = $request->input('sortBy.0');
+
+        return [
+            is_array($sortItem) ? ($sortItem['key'] ?? 'id') : ($sortItem ?? 'id'),
+            is_array($sortItem)
+                ? ($sortItem['order'] ?? 'desc')
+                : ($request->has('sortDesc.0') ? 'asc' : 'desc'),
+        ];
     }
 }

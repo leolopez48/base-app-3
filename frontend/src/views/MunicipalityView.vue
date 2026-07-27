@@ -1,14 +1,14 @@
 <template>
-    <div class="dept-page" data-app>
-        <section class="dept-page__head">
+    <div class="muni-page" data-app>
+        <section class="muni-page__head">
             <div>
                 <span class="eyebrow">Catálogo</span>
-                <h1 class="dept-page__title">Departamentos</h1>
-                <p class="dept-page__sub">
-                    Gestiona los departamentos disponibles para la organización.
+                <h1 class="muni-page__title">Municipios</h1>
+                <p class="muni-page__sub">
+                    Gestiona los municipios disponibles para la organización.
                 </p>
             </div>
-            <div class="dept-page__actions">
+            <div class="muni-page__actions">
                 <button class="btn btn--primary" @click="addRecord">
                     <v-icon icon="mdi-plus" size="18" />
                     <span>Agregar</span>
@@ -16,18 +16,18 @@
             </div>
         </section>
 
-        <div class="dept-page__toolbar">
+        <div class="muni-page__toolbar">
             <div class="search-field">
                 <v-icon icon="mdi-magnify" size="20" />
                 <input
                     v-model="search"
                     type="search"
-                    placeholder="Buscar por nombre o código..."
+                    placeholder="Buscar por nombre o departamento..."
                 />
             </div>
         </div>
 
-        <div class="dept-card surface">
+        <div class="muni-card surface">
             <v-data-table-server
                 :headers="headers"
                 :items-length="total"
@@ -69,7 +69,7 @@
         </div>
 
         <!-- Create / Edit dialog -->
-        <v-dialog v-model="dialog" max-width="780" persistent>
+        <v-dialog v-model="dialog" max-width="640" persistent>
             <article class="modal-card">
                 <header class="modal-card__head">
                     <div>
@@ -83,31 +83,20 @@
                 <section class="modal-card__body">
                     <v-row class="pt-1">
                         <v-col cols="12" md="6">
-                            <label class="field-label">Department Name</label>
+                            <label class="field-label">Nombre</label>
                             <base-input
-                                v-model="v$.editedItem.department_name.$model"
-                                :rules="v$.editedItem.department_name"
+                                v-model="v$.editedItem.name.$model"
+                                :rules="v$.editedItem.name"
                             />
                         </v-col>
                         <v-col cols="12" md="6">
-                            <label class="field-label">Min Dpto</label>
-                            <base-input
-                                v-model="v$.editedItem.min_dpto.$model"
-                                :rules="v$.editedItem.min_dpto"
-                            />
-                        </v-col>
-                        <v-col cols="12" md="6">
-                            <label class="field-label">May Dpto</label>
-                            <base-input
-                                v-model="v$.editedItem.may_dpto.$model"
-                                :rules="v$.editedItem.may_dpto"
-                            />
-                        </v-col>
-                        <v-col cols="12" md="6">
-                            <label class="field-label">Cod Dpto</label>
-                            <base-input
-                                v-model="v$.editedItem.cod_dpto.$model"
-                                :rules="v$.editedItem.cod_dpto"
+                            <label class="field-label">Departamento</label>
+                            <base-select
+                                v-model="v$.editedItem.department_id.$model"
+                                :rules="v$.editedItem.department_id"
+                                :items="departmentOptions"
+                                item-title="title"
+                                item-value="value"
                             />
                         </v-col>
                     </v-row>
@@ -134,7 +123,7 @@
                 <section class="modal-card__body">
                     <p class="text-muted">
                         ¿Estás seguro que deseas eliminar
-                        <b class="text-primary">{{ editedItem.department_name }}</b>?
+                        <b class="text-primary">{{ editedItem.name }}</b>?
                         Esta acción no se puede deshacer.
                     </p>
                 </section>
@@ -152,9 +141,10 @@
 
 <script setup>
 import { onMounted } from "vue";
-import useDepartment from "@/composables/useDepartment";
+import useMunicipality from "@/composables/useMunicipality";
 
 import BaseInput from "../components/base-components/BaseInput.vue";
+import BaseSelect from "../components/base-components/BaseSelect.vue";
 
 const {
     search,
@@ -166,9 +156,11 @@ const {
     loading,
     total,
     formTitle,
+    departmentOptions,
     v$,
     initialize,
     getDataFromApi,
+    loadDepartments,
     editItem,
     addRecord,
     close,
@@ -176,17 +168,18 @@ const {
     deleteItem,
     closeDelete,
     deleteItemConfirm,
-} = useDepartment();
+} = useMunicipality();
 
 onMounted(() => {
     initialize();
+    loadDepartments();
 });
 </script>
 
 <style lang="scss" scoped>
 @use "@/assets/styles/variables" as *;
 
-.dept-page {
+.muni-page {
     max-width: 1340px;
     margin: 0 auto;
     padding: $spacing-10 $spacing-4 $spacing-12;
@@ -248,7 +241,7 @@ onMounted(() => {
     }
 }
 
-.dept-card {
+.muni-card {
     padding: 0;
     overflow: hidden;
 }

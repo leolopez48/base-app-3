@@ -25,6 +25,14 @@
                     <v-icon icon="mdi-domain" size="18" />
                     <span>Departamentos</span>
                 </RouterLink>
+                <RouterLink to="/municipality" class="nav-link" active-class="nav-link--active">
+                    <v-icon icon="mdi-city" size="18" />
+                    <span>Municipios</span>
+                </RouterLink>
+                <RouterLink to="/zone" class="nav-link" active-class="nav-link--active">
+                    <v-icon icon="mdi-map-marker-radius" size="18" />
+                    <span>Zonas</span>
+                </RouterLink>
                 <RouterLink to="/test" class="nav-link" active-class="nav-link--active">
                     <v-icon icon="mdi-flask" size="18" />
                     <span>Test</span>
@@ -95,6 +103,14 @@
             <RouterLink to="/department" class="mobile-link" @click="drawer = false">
                 <v-icon icon="mdi-domain" />
                 <span>Departamentos</span>
+            </RouterLink>
+            <RouterLink to="/municipality" class="mobile-link" @click="drawer = false">
+                <v-icon icon="mdi-city" />
+                <span>Municipios</span>
+            </RouterLink>
+            <RouterLink to="/zone" class="mobile-link" @click="drawer = false">
+                <v-icon icon="mdi-map-marker-radius" />
+                <span>Zonas</span>
             </RouterLink>
             <RouterLink to="/test" class="mobile-link" @click="drawer = false">
                 <v-icon icon="mdi-flask" />

@@ -2,7 +2,7 @@
     <div class="base-field">
         <v-autocomplete
             v-bind="$attrs"
-            :value="modelValue"
+            :model-value="modelValue"
             class="mt-2"
             variant="outlined"
             hide-details

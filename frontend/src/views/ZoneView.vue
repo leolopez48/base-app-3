@@ -1,33 +1,31 @@
 <template>
-    <div class="dept-page" data-app>
-        <section class="dept-page__head">
+    <div class="zone-page" data-app>
+        <section class="zone-page__head">
             <div>
                 <span class="eyebrow">Catálogo</span>
-                <h1 class="dept-page__title">Departamentos</h1>
-                <p class="dept-page__sub">
-                    Gestiona los departamentos disponibles para la organización.
+                <h1 class="zone-page__title">Zonas</h1>
+                <p class="zone-page__sub">
+                    Gestiona las zonas asociadas a cada departamento.
                 </p>
             </div>
-            <div class="dept-page__actions">
-                <button class="btn btn--primary" @click="addRecord">
-                    <v-icon icon="mdi-plus" size="18" />
-                    <span>Agregar</span>
-                </button>
-            </div>
+            <button class="btn btn--primary" @click="addRecord">
+                <v-icon icon="mdi-plus" size="18" />
+                <span>Agregar</span>
+            </button>
         </section>
 
-        <div class="dept-page__toolbar">
+        <div class="zone-page__toolbar">
             <div class="search-field">
                 <v-icon icon="mdi-magnify" size="20" />
                 <input
                     v-model="search"
                     type="search"
-                    placeholder="Buscar por nombre o código..."
+                    placeholder="Buscar por nombre o departamento..."
                 />
             </div>
         </div>
 
-        <div class="dept-card surface">
+        <div class="zone-card surface">
             <v-data-table-server
                 :headers="headers"
                 :items-length="total"
@@ -41,24 +39,25 @@
                     <div class="row-actions">
                         <button
                             class="row-actions__btn row-actions__btn--edit"
-                            @click="editItem(item.raw)"
                             aria-label="Editar"
+                            @click="editItem(item.raw)"
                         >
                             <v-icon icon="mdi-pencil" size="18" />
                         </button>
                         <button
                             class="row-actions__btn row-actions__btn--del"
-                            @click="deleteItem(item.raw)"
                             aria-label="Eliminar"
+                            @click="deleteItem(item.raw)"
                         >
                             <v-icon icon="mdi-delete" size="18" />
                         </button>
                     </div>
                 </template>
-                <template v-slot:no-data>
+
+                <template #no-data>
                     <div class="empty-state">
-                        <v-icon icon="mdi-database-off" size="32" />
-                        <p>Sin registros para mostrar.</p>
+                        <v-icon icon="mdi-map-marker-off" size="32" />
+                        <p>Sin zonas para mostrar.</p>
                         <button class="btn btn--ghost btn--sm" @click="initialize">
                             <v-icon icon="mdi-refresh" size="16" />
                             <span>Recargar</span>
@@ -68,8 +67,7 @@
             </v-data-table-server>
         </div>
 
-        <!-- Create / Edit dialog -->
-        <v-dialog v-model="dialog" max-width="780" persistent>
+        <v-dialog v-model="dialog" max-width="640" persistent>
             <article class="modal-card">
                 <header class="modal-card__head">
                     <div>
@@ -80,38 +78,29 @@
                         <v-icon icon="mdi-close" size="18" />
                     </button>
                 </header>
+
                 <section class="modal-card__body">
                     <v-row class="pt-1">
                         <v-col cols="12" md="6">
-                            <label class="field-label">Department Name</label>
+                            <label class="field-label">Nombre</label>
                             <base-input
-                                v-model="v$.editedItem.department_name.$model"
-                                :rules="v$.editedItem.department_name"
+                                v-model="v$.editedItem.name.$model"
+                                :rules="v$.editedItem.name"
                             />
                         </v-col>
                         <v-col cols="12" md="6">
-                            <label class="field-label">Min Dpto</label>
-                            <base-input
-                                v-model="v$.editedItem.min_dpto.$model"
-                                :rules="v$.editedItem.min_dpto"
-                            />
-                        </v-col>
-                        <v-col cols="12" md="6">
-                            <label class="field-label">May Dpto</label>
-                            <base-input
-                                v-model="v$.editedItem.may_dpto.$model"
-                                :rules="v$.editedItem.may_dpto"
-                            />
-                        </v-col>
-                        <v-col cols="12" md="6">
-                            <label class="field-label">Cod Dpto</label>
-                            <base-input
-                                v-model="v$.editedItem.cod_dpto.$model"
-                                :rules="v$.editedItem.cod_dpto"
+                            <label class="field-label">Departamento</label>
+                            <base-select
+                                v-model="v$.editedItem.department_id.$model"
+                                :rules="v$.editedItem.department_id"
+                                :items="departmentOptions"
+                                item-title="title"
+                                item-value="value"
                             />
                         </v-col>
                     </v-row>
                 </section>
+
                 <footer class="modal-card__foot">
                     <button class="btn btn--ghost" @click="close">Cancelar</button>
                     <button class="btn btn--primary" @click="save">
@@ -122,7 +111,6 @@
             </article>
         </v-dialog>
 
-        <!-- Delete dialog -->
         <v-dialog v-model="dialogDelete" max-width="440">
             <article class="modal-card modal-card--sm">
                 <header class="modal-card__head">
@@ -134,7 +122,7 @@
                 <section class="modal-card__body">
                     <p class="text-muted">
                         ¿Estás seguro que deseas eliminar
-                        <b class="text-primary">{{ editedItem.department_name }}</b>?
+                        <b class="text-primary">{{ editedItem.name }}</b>?
                         Esta acción no se puede deshacer.
                     </p>
                 </section>
@@ -152,9 +140,9 @@
 
 <script setup>
 import { onMounted } from "vue";
-import useDepartment from "@/composables/useDepartment";
-
-import BaseInput from "../components/base-components/BaseInput.vue";
+import useZone from "@/composables/useZone";
+import BaseInput from "@/components/base-components/BaseInput.vue";
+import BaseSelect from "@/components/base-components/BaseSelect.vue";
 
 const {
     search,
@@ -166,6 +154,7 @@ const {
     loading,
     total,
     formTitle,
+    departmentOptions,
     v$,
     initialize,
     getDataFromApi,
@@ -176,17 +165,15 @@ const {
     deleteItem,
     closeDelete,
     deleteItemConfirm,
-} = useDepartment();
+} = useZone();
 
-onMounted(() => {
-    initialize();
-});
+onMounted(initialize);
 </script>
 
 <style lang="scss" scoped>
 @use "@/assets/styles/variables" as *;
 
-.dept-page {
+.zone-page {
     max-width: 1340px;
     margin: 0 auto;
     padding: $spacing-10 $spacing-4 $spacing-12;
@@ -213,9 +200,7 @@ onMounted(() => {
         max-width: 56ch;
     }
 
-    &__toolbar {
-        margin-bottom: $spacing-5;
-    }
+    &__toolbar { margin-bottom: $spacing-5; }
 }
 
 .search-field {
@@ -231,16 +216,16 @@ onMounted(() => {
     max-width: 420px;
 
     &:focus-within {
-        border-color: rgba(0, 212, 255, 0.5);
-        box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.15);
+        border-color: color-mix(in srgb, var(--color-primary) 50%, transparent);
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 15%, transparent);
     }
 
     input {
         flex: 1;
+        height: 44px;
         background: transparent;
         border: 0;
         outline: none;
-        height: 44px;
         color: $text-primary;
         font-size: $font-size-sm;
 
@@ -248,7 +233,7 @@ onMounted(() => {
     }
 }
 
-.dept-card {
+.zone-card {
     padding: 0;
     overflow: hidden;
 }
@@ -256,8 +241,8 @@ onMounted(() => {
 .row-actions {
     display: inline-flex;
     align-items: center;
-    gap: $spacing-1;
     justify-content: flex-end;
+    gap: $spacing-1;
 
     &__btn {
         display: inline-flex;
@@ -270,11 +255,20 @@ onMounted(() => {
         border: 1px solid $border;
         color: $text-muted;
         cursor: pointer;
-        transition: color $transition-fast, background $transition-fast, border-color $transition-fast, transform $transition-fast;
+        transition: color $transition-fast, background $transition-fast,
+            border-color $transition-fast, transform $transition-fast;
 
         &:hover { transform: translateY(-1px); }
-        &--edit:hover { color: $primary; border-color: rgba(0, 212, 255, 0.4); background: $primary-soft; }
-        &--del:hover  { color: $error; border-color: rgba(239, 68, 68, 0.4); background: $error-soft; }
+        &--edit:hover {
+            color: $primary;
+            border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+            background: $primary-soft;
+        }
+        &--del:hover {
+            color: $error;
+            border-color: color-mix(in srgb, var(--color-error) 40%, transparent);
+            background: $error-soft;
+        }
     }
 }
 
@@ -292,10 +286,9 @@ onMounted(() => {
 .eyebrow--error {
     color: $error;
     background: $error-soft;
-    border-color: rgba(239, 68, 68, 0.3);
+    border-color: color-mix(in srgb, var(--color-error) 30%, transparent);
 }
 
-// Modal
 .modal-card {
     background: $surface;
     border: 1px solid $border-strong;
@@ -320,9 +313,7 @@ onMounted(() => {
         }
     }
 
-    &__body {
-        padding: $spacing-4 $spacing-6 $spacing-6;
-    }
+    &__body { padding: $spacing-4 $spacing-6 $spacing-6; }
 
     &__foot {
         display: flex;

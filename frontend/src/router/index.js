@@ -27,10 +27,22 @@ const router = createRouter({
       meta: { requiresAuth: true }, // add meta field to specify the route requires authentication
     },
     {
-      path: "/department",
-      name: "department",
-      component: () => import("../views/DepartmentView.vue"),
-      meta: { requiresAuth: true }, // add meta field to specify the route requires authentication
+        path: "/department",
+        name: "department",
+        component: () => import("../views/DepartmentView.vue"),
+        meta: { requiresAuth: true }, // add meta field to specify the route requires authentication
+    },
+    {
+        path: "/municipality",
+        name: "municipality",
+        component: () => import("../views/MunicipalityView.vue"),
+        meta: { requiresAuth: true },
+    },
+    {
+        path: "/zone",
+        name: "zone",
+        component: () => import("../views/ZoneView.vue"),
+        meta: { requiresAuth: true },
     },
     {
       path: "/:pathMatch(.*)*",

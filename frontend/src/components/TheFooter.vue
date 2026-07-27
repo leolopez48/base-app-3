@@ -33,6 +33,7 @@
                     <ul class="footer__list">
                         <li><RouterLink to="/">Bases de datos</RouterLink></li>
                         <li><RouterLink to="/department">Departamentos</RouterLink></li>
+                        <li><RouterLink to="/zone">Zonas</RouterLink></li>
                         <li><RouterLink to="/test">Test</RouterLink></li>
                     </ul>
                 </v-col>

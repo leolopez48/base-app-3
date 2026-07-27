@@ -1,0 +1,56 @@
+// =====================================================
+// PALETTE — single source of truth for ALL colors
+// Change this file to re-skin the entire app.
+// =====================================================
+//
+// Brand primary:  #06d889 (emerald, taken from codesecuresolutions.com)
+// To restyle the app, just change the values below.
+// SCSS variables and CSS custom properties are both
+// generated from this single file.
+
+$primary:               #06d889;
+$primary-strong:        #05b876;
+$primary-soft:          rgba(6, 216, 137, 0.12);
+$primary-soft-2:        rgba(6, 216, 137, 0.22);
+
+$secondary:             #0a8e6a;
+$secondary-strong:      #086a4f;
+
+// Accent gradient (primary -> secondary)
+$accent-gradient:       linear-gradient(135deg, #{$primary} 0%, #{$secondary} 100%);
+$accent-gradient-soft:  linear-gradient(135deg, #{$primary-soft} 0%, rgba(10, 142, 106, 0.12) 100%);
+$accent-glow:           0 0 24px rgba(6, 216, 137, 0.30);
+
+// Backgrounds
+$background:            #0a0a14;
+$background-soft:       #0d0e1a;
+$surface:               #13141f;
+$surface-elevated:      #1a1c2b;
+$surface-hover:         #1f2236;
+$surface-overlay:       rgba(19, 20, 31, 0.85);
+
+// Borders
+$border:                rgba(255, 255, 255, 0.08);
+$border-strong:         rgba(255, 255, 255, 0.14);
+$border-focus:          rgba(6, 216, 137, 0.55);
+
+// Text
+$text-primary:          #f8fafc;
+$text-secondary:        #cbd5e1;
+$text-muted:            #94a3b8;
+$text-faded:            #64748b;
+$text-on-accent:        #04130c;
+
+// Neutrals
+$white:                 #ffffff;
+$black:                 #000000;
+
+// Semantic
+$success:               #22c55e;
+$success-soft:          rgba(34, 197, 94, 0.12);
+$error:                 #ef4444;
+$error-soft:            rgba(239, 68, 68, 0.12);
+$warning:               #f59e0b;
+$warning-soft:          rgba(245, 158, 11, 0.12);
+$info:                  #06b6d4;
+$info-soft:             rgba(6, 182, 212, 0.12);

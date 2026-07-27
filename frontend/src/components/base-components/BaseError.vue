@@ -1,26 +1,44 @@
 <template>
-  <div>
-    <div
-      v-for="error of rules.$errors"
-      :key="error.$uid"
-      class="d-flex warning pt-1"
-    >
-      <v-icon icon="mdi-alert-circle-outline"></v-icon>
-      <strong>{{ error.$message }}</strong>
+    <div class="base-errors">
+        <div
+            v-for="error of rules.$errors"
+            :key="error.$uid"
+            class="base-errors__item"
+        >
+            <v-icon icon="mdi-alert-circle" size="16" />
+            <span>{{ error.$message }}</span>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
-  props: {
-    rules: {
-      type: Object,
-      required: true,
+    name: "BaseError",
+    props: {
+        rules: {
+            type: Object,
+            required: true,
+        },
     },
-  },
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+@use "@/assets/styles/variables" as *;
+
+.base-errors {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 6px;
+}
+
+.base-errors__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: $error;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+}
 </style>

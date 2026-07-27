@@ -1,7 +1,23 @@
+// =====================================================
+// MAIN STYLESHEET
+// Order matters:
+//   1. _palette     — SCSS color values (single source of truth)
+//   2. _tokens      — CSS custom properties exposed on :root
+//   3. variables    — non-color SCSS vars (spacing, typography, etc.)
+//   4. vuetify      — Vuetify component overrides (uses CSS vars)
+//   5. ui           — global styles, helpers, animations (uses CSS vars)
+//   6. third-party  — bootstrap utilities, vuetify core, mdi icons
+// =====================================================
+@use "./tokens";        // defines :root { --color-* }
+@use "./variables";      // non-color SCSS vars (re-exports palette)
+@use "./vuetify";
+@use "./ui";
 
+// Third-party
 @use "bootstrap/dist/css/bootstrap-utilities.css";
 @use "vuetify/styles";
 @use "@mdi/font/css/materialdesignicons.css";
-@use "./variables" as *;
-@use "./vuetify";
-@use "./ui";
+
+:root {
+    color-scheme: dark;
+}

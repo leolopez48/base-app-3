@@ -1,32 +1,38 @@
 <template>
-  <div>
-    <v-autocomplete
-      v-bind="$attrs"
-      :value="modelValue"
-      class="mt-4"
-      variant="outlined"
-      hide-details
-      @input="$emit('update:modelValue', $event.target.value)"
-    />
-
-    <base-error :rules="rules" />
-  </div>
+    <div class="base-field">
+        <v-autocomplete
+            v-bind="$attrs"
+            :value="modelValue"
+            class="mt-2"
+            variant="outlined"
+            hide-details
+            @update:model-value="(v) => $emit('update:modelValue', v)"
+        />
+        <base-error :rules="rules" />
+    </div>
 </template>
 
 <script>
 import BaseError from "./BaseError.vue";
 
 export default {
-  components: { BaseError },
-  props: {
-    rules: {
-      type: Object,
-      required: true,
+    name: "BaseSelect",
+    components: { BaseError },
+    props: {
+        rules: {
+            type: Object,
+            required: true,
+        },
+        modelValue: {
+            required: true,
+            type: [String, Number, Array, Object],
+        },
     },
-    modelValue: {
-      required: true,
-      type: String,
-    },
-  },
 };
 </script>
+
+<style lang="scss" scoped>
+@use "@/assets/styles/variables" as *;
+
+.base-field { width: 100%; }
+</style>

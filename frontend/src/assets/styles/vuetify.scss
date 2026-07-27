@@ -1,134 +1,256 @@
+// =====================================================
+// Vuetify overrides — generic, driven by CSS custom properties
+// (see _tokens.scss). To re-skin, just override --color-*.
+// =====================================================
 @use "./variables" as *;
 
-.v-card{
-    border-radius: $kbd-border-radius;
+// ---------- Cards ----------
+.v-card {
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-card);
 }
 
-.v-input__details{
-    display: none;
+.v-card-item,
+.v-card-text,
+.v-card-title {
+    color: var(--color-text-primary);
+    background: transparent;
 }
 
-// Inputs
-.v-field.v-field--appended.v-field--variant-outlined.v-theme--light{
-    // color: red;
-    border-radius: 50px;
+.v-card-title {
+    font-weight: $font-weight-semibold;
+    letter-spacing: -0.01em;
 }
 
-// .v-field__outline{
-    
-//     : 0px
-//     // border: 1px solid #4880ff;
-//     border-radius: 5px;
-// }
-
-// .v-field {
-//     caret-color: red;
-//     border: 5px solid green;
-//     border-radius: 15px;
-// }
-
-.v-text-field--outlined fieldset {
-    color: blue !important;
+.v-card-actions {
+    padding: $spacing-4 $spacing-5;
 }
 
-$material-light: (
-  'text-fields': (
-    'outlined': yellow,
-    'outlined-hover': green,
-  ),
-);
+// ---------- Buttons (Vuetify) ----------
+.v-btn {
+    text-transform: none;
+    letter-spacing: 0.01em;
+    font-weight: $font-weight-semibold;
+    border-radius: var(--radius-pill);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+    box-shadow: none !important;
 
-.v-field.v-field--variant-outlined.v-theme--light {
-    color: #3558AB;
-    opacity: 1;
-}
-.v-field.v-field--active.v-field--variant-outlined.v-theme--light.v-field--focused {
-    color: #3558AB !important;
+    &:hover:not(.v-btn--disabled) { transform: translateY(-1px); }
+
+    &.v-btn--variant-elevated,
+    &.v-btn--variant-flat {
+        background: var(--color-primary);
+        color: var(--color-text-on-accent);
+        &:hover { background: color-mix(in srgb, var(--color-primary) 92%, white); }
+    }
+    &.v-btn--variant-outlined {
+        background: transparent;
+        color: var(--color-primary);
+        border: 1px solid color-mix(in srgb, var(--color-primary) 40%, transparent);
+        &:hover { background: color-mix(in srgb, var(--color-primary) 8%, transparent); }
+    }
+    &.v-btn--variant-text {
+        background: transparent;
+        color: var(--color-text-primary);
+    }
+    &.v-btn--variant-tonal {
+        background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+        color: var(--color-primary);
+    }
 }
 
-// .v-field__field{
-//     height: 40px;
-// }
+.v-btn.btn-primary {
+    background: var(--color-primary) !important;
+    color: var(--color-text-on-accent) !important;
+    padding: 0.5rem 1.25rem;
+}
+.v-btn.btn-secondary {
+    background: var(--color-secondary) !important;
+    color: var(--color-white) !important;
+    padding: 0.5rem 1.25rem;
+}
+
+// ---------- Inputs ----------
+.v-input {
+    color: var(--color-text-primary);
+}
+
+.v-field {
+    border-radius: $text-field-border-radius;
+    background: var(--color-surface-elevated);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+
+    &.v-field--variant-outlined .v-field__outline {
+        --v-field-border-opacity: 1;
+        color: var(--color-border-strong);
+    }
+    &.v-field--variant-outlined.v-field--focused .v-field__outline {
+        color: var(--color-primary) !important;
+    }
+    &.v-field--variant-outlined.v-field--focused {
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 15%, transparent);
+    }
+    &.v-field--variant-outlined.v-field--error .v-field__outline {
+        color: var(--color-error) !important;
+    }
+}
 
 .v-field__input {
-    min-height: 40px;
-    padding-top: 0px;
-}
-
-.v-field__append-inner{
+    min-height: 44px;
     padding-top: 8px;
+    color: var(--color-text-primary);
+    font-size: $font-size-sm;
+    caret-color: var(--color-primary);
+
+    input,
+    textarea {
+        color: var(--color-text-primary) !important;
+        &::placeholder { color: var(--color-text-faded) !important; }
+    }
 }
 
-.v-text-field input {
-    min-height: 30px !important;
-    border-radius: 15px;
-    padding-top: 8px !important;
-    padding-bottom: 8px !important;
+.v-label {
+    color: var(--color-text-muted);
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    opacity: 1 !important;
 }
 
-.v-input .v-input__slot {
-    border-radius: 100px;
+.v-field--focused .v-label,
+.v-field--active .v-label {
+    color: var(--color-primary) !important;
 }
 
-
-.v-label.v-field-label{
-    top: 8px;
+.v-field__outline__start,
+.v-field__outline__end {
+    border-radius: $text-field-border-radius;
 }
 
+.v-input__details { display: none; }
 
-/**
-* Textare
-**/
-textarea {
-    padding-top: 0.8rem !important;
-}
-
-/**
-* Borders to inputs
-**/
-
-.v-field__outline{
-    --v-field-border-opacity: 1 !important;
-}
-
-.v-field--variant-outlined .v-field__outline__start{
-    // border-left: 2px solid $dark-blue;
-    border-top-left-radius: $text-field-border-radius;
-    border-bottom-left-radius: $text-field-border-radius;
-}
-
-.v-field--variant-outlined .v-field__outline__notch{
-    // border-top: 2px solid $dark-blue;
-    // border-bottom: 2px solid $dark-blue;
-    // border-top-radius: $text-field-border-radius;
-    // border-bottom-radius: $text-field-border-radius;
-}
-
-.v-field--variant-outlined .v-field__outline__end{
-    // border-top: 2px solid $dark-blue;
-    // border-bottom: 2px solid $dark-blue;
-    border-top-right-radius: $text-field-border-radius;
-    border-bottom-right-radius: $text-field-border-radius;
-}
-
-/**
-* V-AutoComplete
-**/
-
-.v-autocomplete .v-field__input{
+// ---------- Autocomplete / Select ----------
+.v-autocomplete .v-field__input,
+.v-select .v-field__input {
     padding-bottom: 8px;
-    // color: black;
+    color: var(--color-text-primary);
 }
 
-.v-autocomplete__selection{
-    padding-top: 8px;
-    color: black;
+.v-autocomplete__selection,
+.v-select__selection,
+.v-select__selection-text {
+    color: var(--color-text-primary);
 }
 
+.v-list-item {
+    color: var(--color-text-primary);
+    border-radius: var(--radius-sm);
+}
 
-/**
-* Selects
-**/
-.v-select__selection-text{
-    padding-top: 8px;
+.v-list {
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text-primary);
+    padding: $spacing-1;
+}
+
+.v-list-item--active,
+.v-list-item:hover {
+    background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    color: var(--color-primary);
+}
+
+.v-overlay__content {
+    box-shadow: var(--shadow-lg);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.v-menu__content {
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+}
+
+// ---------- Dialogs ----------
+.v-dialog .v-overlay__content {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.v-overlay__scrim {
+    background: rgba(0, 0, 0, 0.7) !important;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+// ---------- Tables ----------
+.v-data-table {
+    background: transparent !important;
+    color: var(--color-text-primary);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.v-data-table__tr:hover {
+    background: color-mix(in srgb, var(--color-primary) 4%, transparent) !important;
+}
+
+.v-data-table-header__content {
+    color: var(--color-text-muted) !important;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    font-size: $font-size-xs;
+    letter-spacing: 0.08em;
+}
+
+.v-data-table__td,
+.v-data-table__th {
+    border-bottom: 1px solid var(--color-border) !important;
+    color: var(--color-text-primary);
+}
+
+.v-data-table-footer {
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    border-top: 1px solid var(--color-border);
+}
+
+// ---------- Progress / Loader ----------
+.v-progress-circular {
+    color: var(--color-primary);
+}
+
+// ---------- Snackbar ----------
+.v-snackbar__wrapper {
+    background: var(--color-surface-elevated) !important;
+    color: var(--color-text-primary) !important;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md) !important;
+    box-shadow: var(--shadow-lg);
+}
+
+// ---------- Toolbar ----------
+.v-toolbar {
+    background: transparent !important;
+    color: var(--color-text-primary);
+}
+
+// ---------- Card section ----------
+.v-card--variant-elevated,
+.v-sheet.v-card {
+    background: var(--color-surface);
+}
+
+// ---------- Checkbox / Radio ----------
+.v-checkbox .v-selection-control,
+.v-radio .v-selection-control {
+    color: var(--color-text-muted);
+}
+.v-checkbox--indeterminate .v-icon,
+.v-checkbox .v-icon {
+    color: var(--color-primary);
 }

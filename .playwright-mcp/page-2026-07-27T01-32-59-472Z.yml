@@ -1,0 +1,297 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e14] [cursor=pointer]:
+      - generic [ref=e15]: 
+      - text: Close
+    - banner [ref=e16]:
+      - link [ref=e18] [cursor=pointer]:
+        - /url: https://codesecuresolutions.com/
+        - img "CSS" [ref=e19]
+      - generic [ref=e20]:
+        - link [ref=e23] [cursor=pointer]:
+          - /url: https://codesecuresolutions.com/
+          - img "CSS" [ref=e24]
+        - list [ref=e26]:
+          - listitem [ref=e27]:
+            - link "Inicio" [ref=e28] [cursor=pointer]:
+              - /url: https://www.codesecuresolutions.com/
+            - text: 
+          - listitem [ref=e29]:
+            - link "Acerca de" [ref=e30] [cursor=pointer]:
+              - /url: https://codesecuresolutions.com/about/
+            - text: 
+          - listitem [ref=e31]:
+            - link "Servicios" [ref=e32] [cursor=pointer]:
+              - /url: https://codesecuresolutions.com/service/
+            - text: 
+          - listitem [ref=e33]:
+            - link "Productos" [ref=e34] [cursor=pointer]:
+              - /url: "#"
+            - generic [ref=e35] [cursor=pointer]: 
+            - text:   
+          - listitem [ref=e36]:
+            - link "Blog" [ref=e37] [cursor=pointer]:
+              - /url: https://codesecuresolutions.com/blog-standard/
+            - text: 
+          - listitem [ref=e38]:
+            - link "Contáctanos" [ref=e39] [cursor=pointer]:
+              - /url: https://codesecuresolutions.com/contact/
+            - text: 
+        - generic [ref=e40]:
+          - generic [ref=e41]:
+            - generic [ref=e44]:
+              - text: Contáctanos
+              - heading [level=6] [ref=e45]:
+                - link "+503 7269 4830" [ref=e46] [cursor=pointer]:
+                  - /url: tel:+503 7269 4830
+            - generic [ref=e49]:
+              - text: Escríbenos
+              - heading [level=6] [ref=e50]:
+                - link "info@codesecuresolutions.com" [ref=e51] [cursor=pointer]:
+                  - /url: mailto:info@codesecuresolutions.com
+          - link "Cotiza con nosotros" [ref=e53] [cursor=pointer]:
+            - /url: https://codesecuresolutions.com/contact/
+    - generic [ref=e55]:
+      - generic [ref=e66]:
+        - heading "“Impulsamos la Transformación Digital de tu Negocio”" [level=1] [ref=e67]
+        - paragraph [ref=e68]: Soluciones seguras, ágiles y escalables para tu empresa o negocio
+        - link [ref=e70] [cursor=pointer]:
+          - /url: https://codesecuresolutions.com/contact/
+      - generic [ref=e77]:          
+      - generic [ref=e89]:
+        - generic [ref=e91]:
+          - generic [ref=e93]:
+            - generic [ref=e94]: Porqué nos seleccionas?
+            - heading "Desbloqueamos el potencial de tu negocio" [level=2] [ref=e95]
+          - img "right-corner-image" [ref=e98]
+        - generic [ref=e100]:
+          - generic [ref=e102]:
+            - img "left-logo-image" [ref=e112]
+            - heading "Nuestra misión." [level=4] [ref=e113]
+            - paragraph [ref=e114]: Impulsar la transformación digital de empresas e instituciones mediante el desarrollo de soluciones tecnológicas personalizadas, seguras e integradas, que optimicen procesos, mejoren la experiencia de los usuarios y potencien la competitividad de nuestros clientes.
+            - heading "#1" [level=2] [ref=e116]
+            - link "ABOUT MORE" [ref=e118] [cursor=pointer]:
+              - /url: https://www.softconic-wp.egenslab.com/about/
+          - list [ref=e123]:
+            - listitem [ref=e124]:
+              - generic [ref=e125]:
+                - heading "25 %" [level=3] [ref=e127]
+                - generic [ref=e128]:
+                  - heading "Estratégia" [level=4] [ref=e129]
+                  - paragraph [ref=e130]: Escuchamos activamente las necesidades de nuestros clientes.
+            - listitem [ref=e131]:
+              - generic [ref=e132]:
+                - heading "25 %" [level=3] [ref=e134]
+                - generic [ref=e135]:
+                  - heading "Soluciones" [level=4] [ref=e136]
+                  - paragraph [ref=e137]: Diseñamos soluciones robustas y escalables.
+            - listitem [ref=e138]:
+              - generic [ref=e139]:
+                - heading "25 %" [level=3] [ref=e141]
+                - generic [ref=e142]:
+                  - heading "Calidad" [level=4] [ref=e143]
+                  - paragraph [ref=e144]: Mantenemos altos estándares de calidad, seguridad y cumplimiento normativo.
+            - listitem [ref=e145]:
+              - generic [ref=e146]:
+                - heading "25 %" [level=3] [ref=e148]
+                - generic [ref=e149]:
+                  - heading "Acompañamiento" [level=4] [ref=e150]
+                  - paragraph [ref=e151]: Acompañamos a nuestros clientes durante todo el proceso
+      - generic [ref=e155]:
+        - heading "Servicios" [level=2] [ref=e159]
+        - generic [ref=e162]:
+          - generic [ref=e163]:
+            - group "3 / 4" [ref=e164]:
+              - generic [ref=e165]:
+                - img "service-bg-img" [ref=e167]
+                - heading "03" [level=2] [ref=e169]
+                - generic [ref=e170]:
+                  - heading [level=3] [ref=e171]:
+                    - link "Seguridad Informática" [ref=e172] [cursor=pointer]:
+                      - /url: https://codesecuresolutions.com/service/
+                  - paragraph
+                  - paragraph [ref=e173]: Protegemos los activos digitales mediante mecanismos de autenticación, autorización y cifrado de datos.
+                  - paragraph
+                - link "Ver" [ref=e176] [cursor=pointer]:
+                  - /url: https://codesecuresolutions.com/service/
+            - group "4 / 4" [ref=e186]:
+              - generic [ref=e187]:
+                - img "service-bg-img" [ref=e189]
+                - heading "04" [level=2] [ref=e191]
+                - generic [ref=e192]:
+                  - heading [level=3] [ref=e193]:
+                    - link "Desarrollo de Software" [ref=e194] [cursor=pointer]:
+                      - /url: "#"
+                  - paragraph
+                  - paragraph [ref=e195]: Creamos aplicaciones personalizadas que responden a los procesos particulares de cada organización.
+                  - paragraph
+                - link "Ver" [ref=e198] [cursor=pointer]:
+                  - /url: https://codesecuresolutions.com/service/
+            - group "1 / 4" [ref=e208]:
+              - generic [ref=e209]:
+                - img "service-bg-img" [ref=e211]
+                - heading "01" [level=2] [ref=e213]
+                - generic [ref=e214]:
+                  - heading [level=3] [ref=e215]:
+                    - link "Desarrollo Web" [ref=e216] [cursor=pointer]:
+                      - /url: https://codesecuresolutions.com/service/
+                  - paragraph
+                  - paragraph [ref=e217]: Desarrollo de plataformas web para internet a la medida, sitios modernos, administrables y funcionales.
+                  - paragraph
+                - link "Ver" [ref=e220] [cursor=pointer]:
+                  - /url: https://codesecuresolutions.com/service/
+            - group "2 / 4" [ref=e232]:
+              - generic [ref=e233]:
+                - img "service-bg-img" [ref=e235]
+                - heading "02" [level=2] [ref=e237]
+                - generic [ref=e238]:
+                  - heading [level=3] [ref=e239]:
+                    - link "Facturación Electrónica" [ref=e240] [cursor=pointer]:
+                      - /url: https://codesecuresolutions.com/service/
+                  - paragraph
+                  - paragraph [ref=e241]: Soluciones alineadas con la legislación de El Salvador para la emisión y validación de documentos electrónicos.
+                  - paragraph
+                - link "Ver" [ref=e244] [cursor=pointer]:
+                  - /url: https://codesecuresolutions.com/service/
+            - group "3 / 4" [ref=e254]:
+              - generic [ref=e255]:
+                - img "service-bg-img" [ref=e257]
+                - heading "03" [level=2] [ref=e259]
+                - generic [ref=e260]:
+                  - heading [level=3] [ref=e261]:
+                    - link "Seguridad Informática" [ref=e262] [cursor=pointer]:
+                      - /url: https://codesecuresolutions.com/service/
+                  - paragraph
+                  - paragraph [ref=e263]: Protegemos los activos digitales mediante mecanismos de autenticación, autorización y cifrado de datos.
+                  - paragraph
+                - link "Ver" [ref=e266] [cursor=pointer]:
+                  - /url: https://codesecuresolutions.com/service/
+            - group "4 / 4" [ref=e276]:
+              - generic [ref=e277]:
+                - img "service-bg-img" [ref=e279]
+                - heading "04" [level=2] [ref=e281]
+                - generic [ref=e282]:
+                  - heading [level=3] [ref=e283]:
+                    - link "Desarrollo de Software" [ref=e284] [cursor=pointer]:
+                      - /url: "#"
+                  - paragraph
+                  - paragraph [ref=e285]: Creamos aplicaciones personalizadas que responden a los procesos particulares de cada organización.
+                  - paragraph
+                - link "Ver" [ref=e288] [cursor=pointer]:
+                  - /url: https://codesecuresolutions.com/service/
+            - group "1 / 4" [ref=e298]:
+              - generic [ref=e299]:
+                - img "service-bg-img" [ref=e301]
+                - heading "01" [level=2] [ref=e303]
+                - generic [ref=e304]:
+                  - heading [level=3] [ref=e305]:
+                    - link "Desarrollo Web" [ref=e306] [cursor=pointer]:
+                      - /url: https://codesecuresolutions.com/service/
+                  - paragraph
+                  - paragraph [ref=e307]: Desarrollo de plataformas web para internet a la medida, sitios modernos, administrables y funcionales.
+                  - paragraph
+                - link "Ver" [ref=e310] [cursor=pointer]:
+                  - /url: https://codesecuresolutions.com/service/
+            - group "2 / 4" [ref=e322]:
+              - generic [ref=e323]:
+                - img "service-bg-img" [ref=e325]
+                - heading "02" [level=2] [ref=e327]
+                - generic [ref=e328]:
+                  - heading [level=3] [ref=e329]:
+                    - link "Facturación Electrónica" [ref=e330] [cursor=pointer]:
+                      - /url: https://codesecuresolutions.com/service/
+                  - paragraph
+                  - paragraph [ref=e331]: Soluciones alineadas con la legislación de El Salvador para la emisión y validación de documentos electrónicos.
+                  - paragraph
+                - link "Ver" [ref=e334] [cursor=pointer]:
+                  - /url: https://codesecuresolutions.com/service/
+          - generic [ref=e345]:
+            - button "Go to slide 1" [ref=e346] [cursor=pointer]
+            - button "Go to slide 2" [ref=e347] [cursor=pointer]
+            - button "Go to slide 3" [ref=e348] [cursor=pointer]
+            - button "Go to slide 4" [ref=e349] [cursor=pointer]
+      - generic [ref=e354]:                 
+      - heading "Que hacemos?" [level=2] [ref=e365]
+      - generic [ref=e369]:
+        - generic [ref=e372]:
+          - generic [ref=e373]:
+            - generic [ref=e381]:
+              - heading "Soluciones modulares y escalables" [level=3] [ref=e382]
+              - paragraph [ref=e383]: Desarrollamos plataformas que crecen de acuerdo con las necesidades del cliente, facilitando la incorporación de nuevos módulos y funcionalidades sin afectar la operación existente.
+            - generic [ref=e392]:
+              - heading "Integración con infraestructura existente" [level=3] [ref=e393]
+              - paragraph [ref=e394]: Nuestras soluciones están diseñadas para interoperar con sistemas actuales, optimizando recursos y reduciendo costos de implementación.
+            - generic [ref=e403]:
+              - heading "Rápida implementación" [level=3] [ref=e404]
+              - paragraph [ref=e405]: Contamos con profesionales con amplia experiencia en desarrollo de software y brindamos acompañamiento para reducir tiempos de implementación lo que garantiza soluciones confiables a corto plazo.
+          - generic [ref=e406]:
+            - generic [ref=e408]:
+              - img "left-image"
+            - generic [ref=e410]:
+              - heading "Potencia el crecimiento de tu negocio" [level=2] [ref=e411]
+              - paragraph [ref=e412]: "Nuestras soluciones ofrencen el potencial que tu empresa o negocio necesita para crecer y posicionarte en el mercado con herramientas adminsitrativas de naguardia. Ofrecemos:"
+              - list [ref=e413]:
+                - listitem [ref=e414]: Creatividad estratégica
+                - listitem [ref=e417]: Implementación acorde a tu infraestructura
+                - listitem [ref=e420]: Soluciones a tu medida
+                - listitem [ref=e423]: Acompañamiento técnico durante todo el proceso
+        - text:   
+  - contentinfo [ref=e426]:
+    - generic [ref=e431]:
+      - link [ref=e433] [cursor=pointer]:
+        - /url: https://codesecuresolutions.com/
+      - generic [ref=e441]:
+        - generic [ref=e442]: Llámanos
+        - heading [level=6] [ref=e443]:
+          - link "+503 7269 4830" [ref=e444] [cursor=pointer]:
+            - /url: tel:50372694830
+    - generic [ref=e446]:
+      - generic [ref=e448]:
+        - generic [ref=e449]:
+          - heading "Dirección" [level=4] [ref=e450]
+          - generic [ref=e453]: Colonia Universitaria Norte, Mejicanos, San Salvador.
+        - generic [ref=e454]:
+          - heading "o escríbenos" [level=4] [ref=e455]
+          - link "info@codesecuresolutions.com" [ref=e458] [cursor=pointer]:
+            - /url: mailto:info@codesecuresolutions.com
+        - heading "Síguenos" [level=6] [ref=e460]
+      - generic [ref=e462]:
+        - heading "Nuestras soluciones" [level=4] [ref=e464]
+        - list [ref=e466]:
+          - listitem [ref=e467]:
+            - link "Acerca de" [ref=e468] [cursor=pointer]:
+              - /url: https://codesecuresolutions.com/about/
+          - listitem [ref=e469]:
+            - link "Servicios" [ref=e470] [cursor=pointer]:
+              - /url: https://codesecuresolutions.com/service/
+          - listitem [ref=e471]:
+            - link "Planes de facturación electrónica" [ref=e472] [cursor=pointer]:
+              - /url: https://codesecuresolutions.com/pricing/
+      - generic [ref=e475]:
+        - heading "Recursos" [level=4] [ref=e477]
+        - list [ref=e479]:
+          - listitem [ref=e480]:
+            - link "Área de Soporte" [ref=e481] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e482]:
+            - link "Política de Soporte" [ref=e483] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e484]:
+            - link "Términos y Condiciones" [ref=e485] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e486]:
+            - link "Política de Privacidad" [ref=e487] [cursor=pointer]:
+              - /url: "#"
+    - generic [ref=e492]:
+      - paragraph [ref=e494]: © Copyright 2025 Code Secure Solutios
+      - list [ref=e496]:
+        - listitem [ref=e497]:
+          - link "" [ref=e498] [cursor=pointer]:
+            - /url: ""
+        - listitem [ref=e500]:
+          - link "" [ref=e501] [cursor=pointer]:
+            - /url: https://www.instagram.com/codesecuresolutions_sv/
+        - listitem [ref=e503]:
+          - link "" [ref=e504] [cursor=pointer]:
+            - /url: https://twitter.com/
+  - generic [ref=e506]: tablet

@@ -1,0 +1,90 @@
+// =====================================================
+// TOKENS — CSS custom properties generated from the palette
+// Exposed at :root so the theme can be overridden at runtime
+// (e.g. <html style="--color-primary: #ff00aa"> or a theme switcher).
+// =====================================================
+@use "./palette" as *;
+
+:root {
+    // Brand
+    --color-primary: #{$primary};
+    --color-primary-strong: #{$primary-strong};
+    --color-primary-soft: #{$primary-soft};
+    --color-primary-soft-2: #{$primary-soft-2};
+    --color-secondary: #{$secondary};
+    --color-secondary-strong: #{$secondary-strong};
+    --color-accent-gradient: #{$accent-gradient};
+    --color-accent-gradient-soft: #{$accent-gradient-soft};
+    --color-accent-glow: #{$accent-glow};
+
+    // Backgrounds
+    --color-background: #{$background};
+    --color-background-soft: #{$background-soft};
+    --color-surface: #{$surface};
+    --color-surface-elevated: #{$surface-elevated};
+    --color-surface-hover: #{$surface-hover};
+    --color-surface-overlay: #{$surface-overlay};
+
+    // Borders
+    --color-border: #{$border};
+    --color-border-strong: #{$border-strong};
+    --color-border-focus: #{$border-focus};
+
+    // Text
+    --color-text-primary: #{$text-primary};
+    --color-text-secondary: #{$text-secondary};
+    --color-text-muted: #{$text-muted};
+    --color-text-faded: #{$text-faded};
+    --color-text-on-accent: #{$text-on-accent};
+
+    // Neutrals
+    --color-white: #{$white};
+    --color-black: #{$black};
+
+    // Semantic
+    --color-success: #{$success};
+    --color-success-soft: #{$success-soft};
+    --color-error: #{$error};
+    --color-error-soft: #{$error-soft};
+    --color-warning: #{$warning};
+    --color-warning-soft: #{$warning-soft};
+    --color-info: #{$info};
+    --color-info-soft: #{$info-soft};
+
+    // ---------- Layout tokens (non-color) ----------
+    --font-family-base: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-family-display: "Inter", "Segoe UI", system-ui, sans-serif;
+    --font-family-mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --radius-xs: 4px;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --radius-2xl: 28px;
+    --radius-pill: 999px;
+
+    --header-height: 72px;
+    --container-max: 1200px;
+    --container-wide: 1340px;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.55);
+    --shadow-glow: 0 0 28px rgba(6, 216, 137, 0.25);
+    --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 18px 40px rgba(0, 0, 0, 0.45);
+
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+    --z-base: 1;
+    --z-sticky: 100;
+    --z-drawer: 200;
+    --z-modal: 300;
+    --z-toast: 400;
+}
+
+// Optional light-theme override (uncomment class to switch):
+// .theme-light { ... }

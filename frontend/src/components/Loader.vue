@@ -1,5 +1,10 @@
 <template>
-  <div class="d-flex justify-center">
-    <v-progress-circular color="#2D52A8" indeterminate />
-  </div>
+    <div class="loader" role="status" aria-label="Cargando">
+        <span class="loader__ring" />
+        <span class="loader__pulse" />
+    </div>
 </template>
+
+<style lang="scss" scoped>
+@use "@/assets/styles/variables" as *;
+</style>

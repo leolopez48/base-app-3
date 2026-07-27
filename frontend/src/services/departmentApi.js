@@ -1,8 +1,10 @@
 import axios from "axios";
 // import { interceptorRequest, interceptorReponse } from "./interceptor";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL || "";
+
 const departmentApi = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL + "/api/department",
+  baseURL: `${backendUrl}/api/department`,
 });
 
 // departmentApi.interceptors.request.use(interceptorRequest);

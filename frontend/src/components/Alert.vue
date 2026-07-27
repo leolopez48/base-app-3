@@ -31,7 +31,7 @@ const { message, type, show, alert } = useAlert();
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/styles/variables.scss";
+@use "@/assets/styles/variables" as *;
 
 .alert-success {
   background: $primary-color;

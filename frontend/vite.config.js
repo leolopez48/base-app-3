@@ -31,8 +31,10 @@ export default defineConfig({
     chunkSizeWarningLimit: 500,
     rollupOptions: {
       output: {
-        manualChunks: {
-          lodash: ["lodash"],
+        manualChunks(id) {
+          if (id.includes("node_modules/lodash")) {
+            return "lodash";
+          }
         },
       },
     },

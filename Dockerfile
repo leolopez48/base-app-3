@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.7
 
-ARG NODE_VERSION=22
-ARG ALPINE_VERSION=3.19
+ARG NODE_VERSION=24
+ARG ALPINE_VERSION=3.22
 
 FROM node:${NODE_VERSION}-alpine AS frontend
 

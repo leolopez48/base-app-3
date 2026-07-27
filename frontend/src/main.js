@@ -5,7 +5,6 @@ import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 import { es } from "vuetify/locale";
-import * as labs from "vuetify/labs/VDataTable";
 
 import App from "./App.vue";
 import router from "./router";
@@ -16,7 +15,6 @@ import "./assets/styles/main.scss";
 const vuetify = createVuetify({
   components: {
     ...components,
-    ...labs,
   },
   directives,
   locale: {

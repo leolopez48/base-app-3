@@ -47,7 +47,7 @@ const { isLoggedIn, logout } = useAuth();
 </script>
 
 <style lang="scss">
-@import "@/assets/styles/variables.scss";
+@use "@/assets/styles/variables" as *;
 
 .menu-sidebar {
   width: 6rem;

@@ -1,8 +1,7 @@
 
-@import "bootstrap/dist/css/bootstrap-utilities.css";
-@import "vuetify/styles";
-@import "@mdi/font/css/materialdesignicons.css";
-
-@import "./variables.scss";
-@import "./vuetify.scss";
-@import "./ui.scss";
+@use "bootstrap/dist/css/bootstrap-utilities.css";
+@use "vuetify/styles";
+@use "@mdi/font/css/materialdesignicons.css";
+@use "./variables" as *;
+@use "./vuetify";
+@use "./ui";

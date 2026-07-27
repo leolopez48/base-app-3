@@ -3,8 +3,8 @@
 Aplicación base Vue/Vite + Laravel empaquetada con la misma arquitectura de
 contenedor usada por Vielman:
 
-- Node 22 Alpine compila el frontend.
-- Alpine 3.19 ejecuta PHP 8.3-FPM, Nginx y Supervisor.
+- Node 24 Alpine compila Vue 3.5 con Vite 8.
+- Alpine 3.22 ejecuta Laravel 13 sobre PHP 8.3-FPM, Nginx y Supervisor.
 - Nginx entrega la SPA y enruta `/api` hacia Laravel.
 - El contenedor expone el puerto `80`.
 - El healthcheck está disponible en `/fpm-ping`.

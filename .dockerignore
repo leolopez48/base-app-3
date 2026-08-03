@@ -7,6 +7,7 @@
 **/.env
 **/.env.*
 !**/.env.example
+!frontend/.env
 **/node_modules
 **/vendor
 **/dist

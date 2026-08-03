@@ -101,39 +101,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Validate frontend configuration
-        shell: bash
-        env:
-          VITE_CLIENT_ID: ${{ vars.VITE_CLIENT_ID }}
-          VITE_ISSUER_LOGIN: ${{ vars.VITE_ISSUER_LOGIN }}
-          VITE_AUTHORIZE_URL: ${{ vars.VITE_AUTHORIZE_URL }}
-          VITE_TOKEN_ENDPOINT: ${{ vars.VITE_TOKEN_ENDPOINT }}
-          VITE_USER_API_ENDPOINT: ${{ vars.VITE_USER_API_ENDPOINT }}
-          VITE_REDIRECT_URI: ${{ vars.VITE_REDIRECT_URI }}
-          VITE_API_GATEWAY_URL: ${{ vars.VITE_API_GATEWAY_URL }}
-        run: |
-          required=(
-            VITE_CLIENT_ID
-            VITE_ISSUER_LOGIN
-            VITE_AUTHORIZE_URL
-            VITE_TOKEN_ENDPOINT
-            VITE_USER_API_ENDPOINT
-            VITE_REDIRECT_URI
-            VITE_API_GATEWAY_URL
-          )
-
-          missing=()
-          for variable in "${required[@]}"; do
-            if [[ -z "${!variable}" ]]; then
-              missing+=("${variable}")
-            fi
-          done
-
-          if (( ${#missing[@]} > 0 )); then
-            printf 'Missing GitHub Actions Variables: %s\n' "${missing[*]}"
-            exit 1
-          fi
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v4
 
@@ -165,14 +132,5 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            VITE_CLIENT_ID=${{ vars.VITE_CLIENT_ID }}
-            VITE_ISSUER_LOGIN=${{ vars.VITE_ISSUER_LOGIN }}
-            VITE_AUTHORIZE_URL=${{ vars.VITE_AUTHORIZE_URL }}
-            VITE_TOKEN_ENDPOINT=${{ vars.VITE_TOKEN_ENDPOINT }}
-            VITE_USER_API_ENDPOINT=${{ vars.VITE_USER_API_ENDPOINT }}
-            VITE_REDIRECT_URI=${{ vars.VITE_REDIRECT_URI }}
-            VITE_API_GATEWAY_URL=${{ vars.VITE_API_GATEWAY_URL }}
-            VITE_BACKEND_URL=${{ vars.VITE_BACKEND_URL }}
           cache-from: type=gha
           cache-to: type=gha,mode=max

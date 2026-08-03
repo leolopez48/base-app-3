@@ -12,14 +12,18 @@ contenedor usada por Vielman:
 ## Construcción local
 
 ```bash
-cp .env.docker.example .env
-# Define APP_KEY y las variables necesarias.
 docker compose build
 docker compose up -d
 ```
 
-La aplicación queda disponible en `http://localhost:8080`. Cuando
-`VITE_BACKEND_URL` está vacío, el frontend usa `/api` en el mismo dominio.
+Laravel toma su configuración de `backend/.env`. Durante la construcción,
+Vite carga `frontend/.env` y embebe sus variables `VITE_*` en el bundle.
+Cuando `VITE_BACKEND_URL` está vacío, el frontend usa `/api` en el mismo
+dominio.
+
+`frontend/.env` se versiona porque solo contiene configuración pública. No se
+deben guardar secretos, tokens, contraseñas ni claves privadas en variables
+`VITE_*`: Vite las publica en el JavaScript que recibe el navegador.
 
 ## Dokploy
 
@@ -30,9 +34,8 @@ Configura el despliegue con:
 - Puerto interno: `80`
 - Healthcheck: `/fpm-ping`
 
-Las variables `VITE_*` son argumentos de construcción. Las variables de
-Laravel (`APP_*`, `DB_*`, `CACHE_DRIVER`, `QUEUE_CONNECTION` y
-`SESSION_DRIVER`) son variables de ejecución.
+Las variables de Laravel (`APP_*`, `DB_*`, `CACHE_DRIVER`,
+`QUEUE_CONNECTION` y `SESSION_DRIVER`) se cargan en tiempo de ejecución.
 
 ## Registro de imágenes
 
@@ -45,5 +48,4 @@ registry.codesecuresolutions.com/base-app-3
 ```
 
 El repositorio debe tener los secretos `REGISTRY_USERNAME` y
-`REGISTRY_PASSWORD`. Los argumentos públicos del frontend se configuran como
-GitHub Actions Variables con sus nombres `VITE_*`.
+`REGISTRY_PASSWORD`.

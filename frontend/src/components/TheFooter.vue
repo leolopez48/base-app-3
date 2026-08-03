@@ -2,9 +2,9 @@
     <footer class="app-footer">
         <div class="footer__glow" />
         <v-container class="py-12" style="max-width: 1340px">
-            <v-row class="gy-8">
+            <v-row class="gr-8">
                 <v-col cols="12" md="4">
-                    <div class="d-flex align-center mb-4">
+                    <div class="d-flex align-center mb-6">
                         <span class="footer__mark">
                             <v-icon icon="mdi-shield-lock" size="20" />
                         </span>
@@ -15,7 +15,7 @@
                         los estilos y la lógica de negocio para tu próximo
                         proyecto.
                     </p>
-                    <div class="d-flex align-center gap-2 mt-4">
+                    <div class="d-flex align-center ga-2 mt-6">
                         <a class="footer__social" href="#" aria-label="GitHub">
                             <v-icon icon="mdi-github" size="18" />
                         </a>
@@ -31,7 +31,6 @@
                 <v-col cols="6" md="2">
                     <h4 class="footer__title">Plataforma</h4>
                     <ul class="footer__list">
-                        <li><RouterLink to="/">Bases de datos</RouterLink></li>
                         <li><RouterLink to="/department">Departamentos</RouterLink></li>
                         <li><RouterLink to="/zone">Zonas</RouterLink></li>
                         <li><RouterLink to="/test">Test</RouterLink></li>
@@ -72,7 +71,7 @@
                 <span class="footer__copy">
                     &copy; {{ year }} App Template. Todos los derechos reservados.
                 </span>
-                <div class="d-flex gap-4">
+                <div class="d-flex ga-6">
                     <a class="footer__small" href="#">Privacidad</a>
                     <a class="footer__small" href="#">Términos</a>
                     <a class="footer__small" href="#">Seguridad</a>

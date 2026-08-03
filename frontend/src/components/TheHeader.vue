@@ -17,10 +17,6 @@
             </RouterLink>
 
             <nav class="d-none d-md-flex nav-links ms-8">
-                <RouterLink to="/" class="nav-link" exact-active-class="nav-link--active">
-                    <v-icon icon="mdi-database" size="18" />
-                    <span>Bases de datos</span>
-                </RouterLink>
                 <RouterLink to="/department" class="nav-link" active-class="nav-link--active">
                     <v-icon icon="mdi-domain" size="18" />
                     <span>Departamentos</span>
@@ -96,10 +92,6 @@
         class="mobile-drawer"
     >
         <div class="d-flex flex-column pa-4">
-            <RouterLink to="/" class="mobile-link" @click="drawer = false">
-                <v-icon icon="mdi-database" />
-                <span>Bases de datos</span>
-            </RouterLink>
             <RouterLink to="/department" class="mobile-link" @click="drawer = false">
                 <v-icon icon="mdi-domain" />
                 <span>Departamentos</span>
@@ -117,7 +109,7 @@
                 <span>Test</span>
             </RouterLink>
 
-            <v-divider class="my-3" />
+            <v-divider class="my-4" />
 
             <template v-if="isLoggedIn">
                 <v-list-item

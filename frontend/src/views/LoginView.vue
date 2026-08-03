@@ -109,8 +109,6 @@ onMounted(() => {
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     box-shadow: var(--shadow-lg), 0 0 60px color-mix(in srgb, var(--color-primary) 15%, transparent);
-    text-align: left;
-
     &__heading {
         font-size: $font-size-2xl;
         font-weight: $font-weight-bold;

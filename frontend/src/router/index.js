@@ -16,9 +16,7 @@ const router = createRouter({
     },
     {
       path: "/",
-      name: "home",
-      component: () => import("../components/Database.vue"),
-      meta: { requiresAuth: true }, // add meta field to specify the route requires authentication
+      redirect: { name: "department" },
     },
     {
       path: "/test",

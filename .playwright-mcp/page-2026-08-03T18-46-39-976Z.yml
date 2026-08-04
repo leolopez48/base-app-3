@@ -1,7 +1,0 @@
-- main [ref=e5]:
-  - generic [ref=e7]:
-    - heading [level=2] [ref=e8]:
-      - emphasis [ref=e9]: Iniciar sesión
-    - paragraph [ref=e10]: Inicia sesión para continuar.
-    - button "Iniciar sesión" [ref=e11] [cursor=pointer]:
-      - generic [ref=e12]: 󰍂

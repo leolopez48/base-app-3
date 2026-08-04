@@ -19,18 +19,25 @@ const router = useRouter();
 const route = useRoute();
 const { getAccessToken, getUserInfo } = useAuth();
 
-let verifier = localStorage.getItem("verifier");
-
 onMounted(async () => {
     try {
         const { code, state } = route.query;
-        if (!verifier) verifier = state;
+        const expectedState = localStorage.getItem("state");
+        const verifier = localStorage.getItem("verifier");
+
+        if (!code || !state || state !== expectedState || !verifier) {
+            throw new Error("Invalid OAuth callback");
+        }
 
         await getAccessToken(verifier, code);
+        localStorage.removeItem("state");
+        localStorage.removeItem("verifier");
         await getUserInfo();
-        router.push("/");
+        router.replace("/");
     } catch (error) {
-        router.push("/login");
+        localStorage.removeItem("state");
+        localStorage.removeItem("verifier");
+        router.replace("/login");
     }
 });
 </script>

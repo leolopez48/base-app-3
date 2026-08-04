@@ -1,5 +1,3 @@
-import { ref } from "vue";
-import crypto from "crypto-js";
 import axios from "axios";
 
 import { useAuthStore } from "../stores/auth";
@@ -15,9 +13,6 @@ const redirectUri = import.meta.env.VITE_REDIRECT_URI;
 const useAuth = () => {
   const authStore = useAuthStore();
   const {
-    state,
-    verifier,
-    challenge,
     accessToken,
     refreshToken,
     user,
@@ -25,28 +20,41 @@ const useAuth = () => {
   } = storeToRefs(authStore);
   const router = useRouter();
 
-  const cryptoSha256 = (string) => {
-    return crypto.SHA256(string);
+  const createRandomString = (length) => {
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~";
+    const bytes = globalThis.crypto.getRandomValues(new Uint8Array(length));
+    return Array.from(bytes, (byte) => alphabet[byte % alphabet.length]).join("");
   };
 
-  const redirectToProvider = () => {
-    window.location.href = loginUrl();
-  };
+  const createCodeChallenge = async (verifier) => {
+    const digest = await globalThis.crypto.subtle.digest(
+      "SHA-256",
+      new TextEncoder().encode(verifier)
+    );
 
-  const createRandomString = (num) => {
-    return [...Array(num)].map(() => Math.random().toString(36)[2]).join("");
-  };
-
-  const base64Url = (string) => {
-    return string
-      .toString(crypto.enc.Base64)
+    return btoa(String.fromCharCode(...new Uint8Array(digest)))
       .replace(/\+/g, "-")
       .replace(/\//g, "_")
       .replace(/=/g, "");
   };
 
-  const loginUrl = () => {
-    return `${authorizeUrl}?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=*&state=${state.value}&code_challenge=${challenge.value}&code_challenge_method=S256`;
+  const redirectToProvider = async () => {
+    const state = createRandomString(40);
+    const verifier = createRandomString(128);
+    const challenge = await createCodeChallenge(verifier);
+    const params = new URLSearchParams({
+      client_id: clientId,
+      redirect_uri: redirectUri,
+      response_type: "code",
+      scope: "*",
+      state,
+      code_challenge: challenge,
+      code_challenge_method: "S256",
+    });
+
+    localStorage.setItem("state", state);
+    localStorage.setItem("verifier", verifier);
+    window.location.assign(`${authorizeUrl}?${params}`);
   };
 
   const getAccessToken = async (verifier, code) => {
@@ -65,43 +73,48 @@ const useAuth = () => {
     localStorage.setItem("refresh_token", data.refresh_token);
   };
 
-  const getUserInfo = async () => {
-    const { data } = await axios
-      .post(userApiEndpoint, null, {
+  const getUserInfo = async (allowRefresh = true) => {
+    try {
+      const { data } = await axios.post(userApiEndpoint, null, {
         headers: {
           Authorization: `Bearer ${accessToken.value}`,
         },
-      })
-      .catch(async (error) => {
-        if (error.response.status == 401) {
-          refreshAccessToken();
-          return;
-        }
-
-        logout();
       });
 
-    user.value = data;
-    isLoggedIn.value = true;
+      user.value = data;
+      isLoggedIn.value = true;
+    } catch (error) {
+      if (allowRefresh && error.response?.status === 401 && refreshToken.value) {
+        await refreshAccessToken();
+        return getUserInfo(false);
+      }
+
+      logout();
+      throw error;
+    }
   };
 
-  const refreshAccessToken = async (verifier, refreshToken) => {
-    const response = await axios
-      .post(tokenEndpoint, {
-        grant_type: "refresh_token",
-        client_id: clientId,
-        refresh_token: refreshToken,
-        client_secret: verifier,
-      })
-      .catch((error) => {
-        console.log(error);
-        logout();
-      });
+  const refreshAccessToken = async () => {
+    const currentRefreshToken =
+      refreshToken.value || localStorage.getItem("refresh_token");
 
-    accessToken.value = response.data.access_token;
-    refreshToken.value = response.data.refresh_token;
+    if (!currentRefreshToken) {
+      logout();
+      throw new Error("No refresh token is available");
+    }
 
-    return response;
+    const { data } = await axios.post(tokenEndpoint, {
+      grant_type: "refresh_token",
+      client_id: clientId,
+      refresh_token: currentRefreshToken,
+    });
+
+    accessToken.value = data.access_token;
+    refreshToken.value = data.refresh_token || currentRefreshToken;
+    localStorage.setItem("access_token", accessToken.value);
+    localStorage.setItem("refresh_token", refreshToken.value);
+
+    return data;
   };
 
   const logout = () => {
@@ -112,19 +125,12 @@ const useAuth = () => {
 
   return {
     // Variables
-    state,
-    verifier,
-    challenge,
     accessToken,
     refreshToken,
     user,
     isLoggedIn,
     // Functions
-    cryptoSha256,
     redirectToProvider,
-    createRandomString,
-    base64Url,
-    loginUrl,
     getAccessToken,
     getUserInfo,
     refreshAccessToken,

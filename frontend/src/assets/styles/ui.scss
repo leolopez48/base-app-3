@@ -225,6 +225,7 @@ p { color: var(--color-text-secondary); line-height: $line-height-relaxed; margi
 
     &:hover:not(:disabled) {
         background: var(--btn-hover-bg);
+        color: var(--btn-color);
         transform: translateY(-1px);
     }
     &:active:not(:disabled) { transform: translateY(0); }
@@ -235,7 +236,7 @@ p { color: var(--color-text-secondary); line-height: $line-height-relaxed; margi
     --btn-bg: var(--color-primary);
     --btn-color: var(--color-text-on-accent);
     --btn-border: var(--color-primary);
-    --btn-hover-bg: primary-hover();
+    --btn-hover-bg: color-mix(in srgb, var(--color-primary) 92%, white);
     box-shadow: 0 6px 22px color-mix(in srgb, var(--color-primary) 25%, transparent);
     &:hover:not(:disabled) { box-shadow: 0 8px 28px color-mix(in srgb, var(--color-primary) 40%, transparent); }
 }
@@ -244,7 +245,7 @@ p { color: var(--color-text-secondary); line-height: $line-height-relaxed; margi
     --btn-bg: var(--color-secondary);
     --btn-color: var(--color-white);
     --btn-border: var(--color-secondary);
-    --btn-hover-bg: secondary-hover();
+    --btn-hover-bg: color-mix(in srgb, var(--color-secondary) 92%, white);
 }
 
 .btn--ghost {
@@ -258,7 +259,7 @@ p { color: var(--color-text-secondary); line-height: $line-height-relaxed; margi
     --btn-bg: transparent;
     --btn-color: var(--color-primary);
     --btn-border: color-mix(in srgb, var(--color-primary) 50%, transparent);
-    --btn-hover-bg: primary-08();
+    --btn-hover-bg: color-mix(in srgb, var(--color-primary) 8%, transparent);
 }
 
 .btn--danger {

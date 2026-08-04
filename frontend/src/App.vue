@@ -10,8 +10,6 @@ import Alert from "@/components/Alert.vue";
 const {
     getUserInfo,
     logout,
-    state,
-    verifier,
     accessToken,
     refreshToken,
 } = useAuth();
@@ -28,9 +26,6 @@ watch(() => route.path, computePublic, { immediate: true });
 onMounted(async () => {
     accessToken.value = localStorage.getItem("access_token");
     refreshToken.value = localStorage.getItem("refresh_token");
-    state.value = localStorage.getItem("state");
-    verifier.value = localStorage.getItem("verifier");
-
     const path = window.location.pathname;
     if (path == "/login" || path == "/callback") {
         return;
@@ -41,7 +36,11 @@ onMounted(async () => {
         return;
     }
 
-    await getUserInfo();
+    try {
+        await getUserInfo();
+    } catch {
+        // getUserInfo redirects to login when the session cannot be renewed.
+    }
 });
 </script>
 

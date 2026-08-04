@@ -21,26 +21,9 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
 import useAuth from "../composables/useAuth";
 
-const {
-    challenge,
-    state,
-    verifier,
-    cryptoSha256,
-    createRandomString,
-    base64Url,
-    redirectToProvider,
-} = useAuth();
-
-onMounted(() => {
-    state.value = createRandomString(40);
-    verifier.value = createRandomString(128);
-    challenge.value = base64Url(cryptoSha256(verifier.value));
-    localStorage.setItem("state", state.value);
-    localStorage.setItem("verifier", verifier.value);
-});
+const { redirectToProvider } = useAuth();
 </script>
 
 <style lang="scss" scoped>
